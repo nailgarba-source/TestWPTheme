@@ -23,7 +23,7 @@ function my_theme_register_acf_blocks() {
      * @link https://developer.wordpress.org/reference/functions/register_block_type/
      */
     // Define the directory containing the blocks.
-    $blocks_directory = get_template_directory() . 'template-parts/blocks';
+    $blocks_directory = get_template_directory() . '/template-parts/blocks';
 
     // Check if the directory exists.
     if (!is_dir($blocks_directory)) {
@@ -45,19 +45,6 @@ function my_theme_register_acf_blocks() {
 }
 add_action('init', 'my_theme_register_acf_blocks');
 
-add_action('acf/init', function () {
-    acf_register_block_type([
-        'name'              => 'hero',
-        'title'             => __('Hero Section'),
-        'description'       => __('A full-width hero section.'),
-        'render_template'   => get_template_directory() . '/template-parts/blocks/hero/hero.php',
-        'category'          => 'design',
-        'icon'              => 'cover-image',
-        'keywords'          => ['hero', 'header'],
-        'mode'              => 'preview',
-        'supports'          => ['align' => ['wide', 'full'], 'anchor' => true],
-    ]);
-});
 
 function testtheme_enqueue_block_styles() {
     $blocks_dir = get_template_directory() . '/template-parts/blocks';
