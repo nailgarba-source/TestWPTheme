@@ -1,0 +1,16 @@
+{
+  "apiVersion": 2,
+  "name": "acf/favoritefoods",
+  "title": "Favorite Foods",
+  "description": "A favorite food section with sliders",
+  "category": "media",
+  "icon": "admin-comments",
+  "keywords": ["slider", "carousel", "favorite", "foods"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "favoritefoods.php"
+  },
+  "supports": {
+    "anchor": true
+  }
+}
