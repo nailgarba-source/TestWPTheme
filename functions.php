@@ -12,28 +12,74 @@ function my_theme_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
 
-function myblocks_blockone_block_init() {
-		register_block_type( __DIR__ . "/build/blockone" );
+
+
+
+function my_theme_register_acf_blocks() {
+/**
+     * We register our block's with WordPress's handy
+     * register_block_type();
+     *
+     * @link https://developer.wordpress.org/reference/functions/register_block_type/
+     */
+    // Define the directory containing the blocks.
+    $blocks_directory = get_template_directory() . 'template-parts/blocks';
+
+    // Check if the directory exists.
+    if (!is_dir($blocks_directory)) {
+        return;
+    }
+
+    // Get all subdirectories (assuming each block is in its own folder).
+    $block_folders = glob($blocks_directory . '/*', GLOB_ONLYDIR);
+
+    // Loop through each block folder and register the block.
+    foreach ($block_folders as $block_folder) {
+        $block_json = $block_folder . '/block.json';
+
+        // Check if block.json exists in the folder.
+        if (file_exists($block_json)) {
+            register_block_type($block_folder);
+        }
+    }
 }
-add_action('init', 'myblocks_blockone_block_init');
+add_action('init', 'my_theme_register_acf_blocks');
 
+add_action('acf/init', function () {
+    acf_register_block_type([
+        'name'              => 'hero',
+        'title'             => __('Hero Section'),
+        'description'       => __('A full-width hero section.'),
+        'render_template'   => get_template_directory() . '/template-parts/blocks/hero/hero.php',
+        'category'          => 'design',
+        'icon'              => 'cover-image',
+        'keywords'          => ['hero', 'header'],
+        'mode'              => 'preview',
+        'supports'          => ['align' => ['wide', 'full'], 'anchor' => true],
+    ]);
+});
 
-add_action('acf/init', 'register_my_acf_block');
-function register_my_acf_block() {
-    acf_register_block_type(array(
-        'name'              => 'custom-block',
-        'title'             => __('My Custom Block'),
-        'description'       => __('A custom ACF block.'),
-        'render_template'   => get_template_directory() . '/template-parts/blocks/custom-block.php',
-        'category'          => 'formatting',
-        'icon'              => 'admin-comments',
-        'keywords'          => array( 'custom' ),
-        'mode'              => 'auto', // or 'preview' or 'edit'
-        'supports'          => array(
-            'align' => false,
-            'mode' => true,
-        ),
-    ));
+function testtheme_enqueue_block_styles() {
+    $blocks_dir = get_template_directory() . '/template-parts/blocks';
+    $blocks_url = get_template_directory_uri() . '/template-parts/blocks';
+
+    // Get all subdirectories (each representing a block)
+    $block_folders = glob($blocks_dir . '/*', GLOB_ONLYDIR);
+
+    foreach ($block_folders as $block_folder) {
+        $style_path = $block_folder . '/style.css';
+
+        if (file_exists($style_path)) {
+            $block_name = basename($block_folder); // e.g., "hero", "testimonial"
+            $style_handle = 'testtheme-' . $block_name;
+
+            wp_enqueue_style(
+                $style_handle,
+                $blocks_url . '/' . $block_name . '/style.css',
+                array(),
+                filemtime($style_path)
+            );
+        }
+    }
 }
-
-// add_action('acf/init', 'my_acf_block_init');
+add_action('enqueue_block_assets', 'testtheme_enqueue_block_styles');
