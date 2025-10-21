@@ -1,0 +1,16 @@
+{
+  "apiVersion": 2,
+  "name": "acf/hero",
+  "title": "Hero",
+  "description": "A full-width hero section with background image and heading.",
+  "category": "media",
+  "icon": "admin-comments",
+  "keywords": ["hero", "banner", "header"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "hero.php"
+  },
+  "supports": {
+    "anchor": true
+  }
+}
