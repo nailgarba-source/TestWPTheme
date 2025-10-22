@@ -1,22 +1,30 @@
 <?php
+function my_theme_setup()
+{
+    add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
+    add_theme_support('site-icon');
+    add_theme_support('custom-logo', [
+        'height' => 100,
+        'width' => 400,
+        'flex-height' => true,
+        'flex-width' => true,
+    ]);
+    register_nav_menu('header_menu', 'Header Menu');
+    register_nav_menu('footer_menu', 'Footer Menu');
+    // update_option('site_icon', 145);
 
-function test1(){
- add_theme_support('title-tag');
- add_theme_support('post-thumbnails');
 }
+add_action('after_setup_theme', 'my_theme_setup');
 
-add_action('after_setup_theme', 'test1');
-
-function my_theme_enqueue_styles() {
+function my_theme_enqueue_styles()
+{
     wp_enqueue_style('theme-style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
-
-
-
-
-function my_theme_register_acf_blocks() {
-/**
+function my_theme_register_acf_blocks()
+{
+    /**
      * We register our block's with WordPress's handy
      * register_block_type();
      *
@@ -46,7 +54,8 @@ function my_theme_register_acf_blocks() {
 add_action('init', 'my_theme_register_acf_blocks');
 
 
-function testtheme_enqueue_block_styles() {
+function testtheme_enqueue_block_styles()
+{
     $blocks_dir = get_template_directory() . '/template-parts/blocks';
     $blocks_url = get_template_directory_uri() . '/template-parts/blocks';
 
@@ -72,12 +81,13 @@ function testtheme_enqueue_block_styles() {
 add_action('enqueue_block_assets', 'testtheme_enqueue_block_styles');
 
 
-function mytheme_register_menus() {
-    register_nav_menu('header_menu', 'Header Menu');
-    register_nav_menu('footer_menu', 'Footer Menu');
-}
-add_action('after_setup_theme', 'mytheme_register_menus');
 
-add_theme_support('site-icon');
+// add_theme_support('site-icon');
+// add_theme_support( 'custom-logo', [
+//     'height'      => 100,
+//     'width'       => 400,
+//     'flex-height' => true,
+//     'flex-width'  => true,
+// ] );
 
-update_option('site_icon', 145);
+// update_option('site_icon', 145);
