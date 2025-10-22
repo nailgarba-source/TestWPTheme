@@ -78,3 +78,6 @@ function mytheme_register_menus() {
 }
 add_action('after_setup_theme', 'mytheme_register_menus');
 
+add_theme_support('site-icon');
+
+update_option('site_icon', 145);
