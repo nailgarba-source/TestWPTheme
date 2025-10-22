@@ -1,0 +1,16 @@
+{
+  "apiVersion": 2,
+  "name": "acf/flexibleblock",
+  "title": "Flexible Block",
+  "description": "A flexible block section.",
+  "category": "formatting",
+  "icon": "heart",
+  "keywords": ["flexible", "block", "favorite", "moments"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "flexibleblock.php"
+  },
+  "supports": {
+    "anchor": true
+  }
+}
