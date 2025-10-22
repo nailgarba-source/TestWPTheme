@@ -73,6 +73,7 @@ add_action('enqueue_block_assets', 'testtheme_enqueue_block_styles');
 
 
 function mytheme_register_menus() {
+    register_nav_menu('header_menu', 'Header Menu');
     register_nav_menu('footer_menu', 'Footer Menu');
 }
 add_action('after_setup_theme', 'mytheme_register_menus');
