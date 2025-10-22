@@ -12,7 +12,6 @@ function my_theme_setup()
     ]);
     register_nav_menu('header_menu', 'Header Menu');
     register_nav_menu('footer_menu', 'Footer Menu');
-    // update_option('site_icon', 145);
 
 }
 add_action('after_setup_theme', 'my_theme_setup');
@@ -79,20 +78,6 @@ function testtheme_enqueue_block_styles()
     }
 }
 add_action('enqueue_block_assets', 'testtheme_enqueue_block_styles');
-
-
-
-// add_theme_support('site-icon');
-// add_theme_support( 'custom-logo', [
-//     'height'      => 100,
-//     'width'       => 400,
-//     'flex-height' => true,
-//     'flex-width'  => true,
-// ] );
-
-// update_option('site_icon', 145);
-
-
 
 add_action( 'init', 'bookstore_register_book_post_type' );
 function bookstore_register_book_post_type() {
