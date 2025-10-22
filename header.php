@@ -14,13 +14,13 @@ $logo = get_field('logo', 'option');
 <body <?php body_class(); ?>>
     <header class="site-heading">
 
-            <a href="<?php echo esc_url(get_home_url()); ?>">
-                <?php if ($logo): ?>
-                    <img src="<?php echo esc_url($logo['url']) ?>" class="header-logo"/>
-                <?php else: ?>
-                    <h1 class="blog-title"><?php bloginfo('name'); ?></h1>
-                <?php endif; ?>
-            </a>
+        <a href="<?php echo esc_url(get_home_url()); ?>">
+            <?php if ($logo): ?>
+                <img src="<?php echo esc_url($logo['url']) ?>" class="header-logo" />
+            <?php else: ?>
+                <h1 class="blog-title"><?php bloginfo('name'); ?></h1>
+            <?php endif; ?>
+        </a>
 
         <nav class="site-navigation">
             <?php
@@ -31,4 +31,8 @@ $logo = get_field('logo', 'option');
             ));
             ?>
         </nav>
+
+        <div class="header-search">
+            <?php get_search_form(); ?>
+        </div>
     </header>
