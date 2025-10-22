@@ -1,0 +1,16 @@
+{
+  "apiVersion": 2,
+  "name": "acf/petmoments",
+  "title": "Pet Moments",
+  "description": "A flexible block section for pet moments.",
+  "category": "formatting",
+  "icon": "heart",
+  "keywords": ["flexible", "petmoments", "pet", "block", "favorite", "moments"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "petmoments.php"
+  },
+  "supports": {
+    "anchor": true
+  }
+}
