@@ -76,3 +76,53 @@ body {
     height: 30px;
     margin: 0 10px;
 }
+.custompicture {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: moveBackground 20s ease-in-out infinite alternate;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 100% center;
+  }
+}
+.random-products-marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+}
+
+.random-products-track {
+    display: flex;
+    gap: 30px;
+    animation: scrollProducts 25s linear infinite;
+}
+
+.random-product {
+    min-width: 200px;
+    background: #ffffff;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.random-product img {
+    max-width: 100%;
+    height: auto;
+}
+
+@keyframes scrollProducts {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
